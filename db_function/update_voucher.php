@@ -9,8 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $trackingNo = $_POST['editTrackingNo'];
     $voucherCode = $_POST['editVoucherCode'];
     $voucherStatus = $_POST['editStatus'];
+    $dateForwarded = $_POST['editDateForwarded'];
+    $carriedBy = $_POST['editCarriedBy'];
 
-    $query_update_voucher = "UPDATE details SET tracking_no = '$trackingNo', voucher_code = '$voucherCode', status = '$voucherStatus' WHERE id = '$id'";
+    $query_update_voucher = "UPDATE details SET tracking_no = '$trackingNo', voucher_code = '$voucherCode', status = '$voucherStatus', date_forwarded = '$dateForwarded', carried_by = '$carriedBy' WHERE id = '$id'";
     $result_update_voucher = mysqli_query($db_connection, $query_update_voucher);
 
     if ($result_update_voucher) {
@@ -31,4 +33,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Content-Type: application/json');
     echo json_encode($response);
 }
-?>

@@ -77,30 +77,36 @@
                             Vouchers
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tracking No</th>
-                                        <th>Voucher Code</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $squeryVoucher = "SELECT * FROM details";
-                                    $result = mysqli_query($db_connection, $squeryVoucher);
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "
+                            <div style="overflow-x: auto;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tracking No</th>
+                                            <th>Voucher Code</th>
+                                            <th>Date Forwarded</th>
+                                            <th>Carried By</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $squeryVoucher = "SELECT * FROM details";
+                                        $result = mysqli_query($db_connection, $squeryVoucher);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "
                                             <tr>
                                                 <td>" . $row['tracking_no'] . "</td>
                                                 <td>" . $row['voucher_code'] . "</td>
+                                                <td>" . $row['date_forwarded'] . "</td>
+                                                <td>" . $row['carried_by'] . "</td>
                                                 <td>" . $row['status'] . "</td>
                                             </tr>
                                         ";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -47,6 +47,8 @@
                             <th>No.</th>
                             <th>Tracking Number</th>
                             <th>Voucher Code</th>
+                            <th>Date Forwarded</th>
+                            <th>Carried By</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -77,6 +79,8 @@
                             echo "<td>" . $auto_incremented_id . "</td>"; // Display auto-incremented ID
                             echo "<td>" . $row['tracking_no'] . "</td>";
                             echo "<td>" . $row['voucher_code'] . "</td>";
+                            echo "<td>" . $row['date_forwarded'] . "</td>";
+                            echo "<td>" . $row['carried_by'] . "</td>";
                             echo "<td>" . $row['status'] . "</td>";
                             echo "<td>";
                             echo '<button type="button" class="btn btn-info info-btn" data-toggle="modal" data-target="#viewVoucherModal" data-id="' . $row['id'] . '">View</button>';
@@ -122,6 +126,14 @@
                                 <input disabled type="text" class="form-control" id="view_voucher_code" name="voucher_code" required>
                             </div>
                             <div class="form-group">
+                                <label for="date_forwarded">Date Forwarded:</label>
+                                <input disabled type="text" class="form-control" id="view_date_forwarded" name="date_forwarded" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="carried_by">Carried By:</label>
+                                <input disabled type="text" class="form-control" id="view_carried_by" name="carried_by" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="status">Status:</label>
                                 <input disabled type="text" class="form-control" id="view_voucher_status" name="status" required>
                             </div>
@@ -154,6 +166,14 @@
                             <div class="form-group">
                                 <label for="voucher_code">Voucher Code:</label>
                                 <input type="text" class="form-control" id="voucher_code" name="voucher_code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date_forwarded">Date Forwarded:</label>
+                                <input type="date" class="form-control" id="date_forwarded" name="date_forwarded" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="carried_by">Carried By:</label>
+                                <input type="text" class="form-control" id="carried_by" name="carried_by" required>
                             </div>
                             <div class="form-group">
                                 <label for="status">Status:</label>
@@ -193,6 +213,14 @@
                             <div class="form-group">
                                 <label for="editVoucherCode">Voucher Code:</label>
                                 <input type="text" class="form-control" id="editVoucherCode" name="editVoucherCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date_forwarded">Date Forwarded:</label>
+                                <input type="date" class="form-control" id="editDateForwarded" name="editDateForwarded" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="carried_by">Carried By:</label>
+                                <input type="text" class="form-control" id="editCarriedBy" name="editCarriedBy" required>
                             </div>
                             <div class="form-group">
                                 <label for="editStatus">Status:</label>
@@ -256,6 +284,8 @@
                             $('#view_tracking_no').val(voucher.tracking_no);
                             $('#view_voucher_code').val(voucher.voucher_code);
                             $('#view_voucher_status').val(voucher.status);
+                            $('#view_date_forwarded').val(voucher.date_forwarded);
+                            $('#view_carried_by').val(voucher.carried_by);
                             GenerateCode(voucher.voucher_code);
                             $('#viewVoucherModal').modal('show');
                         },
@@ -291,6 +321,8 @@
                             $('#editTrackingNo').val(voucher.tracking_no);
                             $('#editVoucherCode').val(voucher.voucher_code);
                             $('#editStatus').val(voucher.status);
+                            $('#editDateForwarded').val(voucher.date_forwarded);
+                            $('#editCarriedBy').val(voucher.carried_by);
                             $('#editVoucherModal').modal('show');
                         },
                         error: function(xhr, status, error) {

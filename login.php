@@ -13,7 +13,7 @@
     body {
       font-family: "Open Sans", sans-serif;
       height: 100vh;
-      background: url("https://i.imgur.com/HgflTDf.jpg") 50% fixed;
+      background: url("images/bg2.jpg") 50% fixed;
       background-size: cover;
     }
 
@@ -40,7 +40,7 @@
       min-height: 100%;
       padding: 20px;
       background-color: rgba(225, 225, 225, 0.5);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(1px);
     }
 
     .login {

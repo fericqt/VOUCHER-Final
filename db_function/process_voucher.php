@@ -8,9 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tracking_no = $_POST['tracking_no'];
     $voucher_code = $_POST['voucher_code'];
     $status = $_POST['status'];
+    $carriedby = $_POST['carried_by'];
+    $dateforwarded = $_POST['date_forwarded'];
 
     // Insert voucher data into database
-    $query = "INSERT INTO details (tracking_no, voucher_code, status) VALUES ('$tracking_no', '$voucher_code', '$status')";
+    $query = "INSERT INTO details (tracking_no, voucher_code, status, date_forwarded, carried_by) VALUES ('$tracking_no', '$voucher_code', '$status', '$dateforwarded', '$carriedby')";
     $result = mysqli_query($db_connection, $query);
 
     // Check if insertion was successful
@@ -27,4 +29,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: ../index.php");
     exit();
 }
-?>
