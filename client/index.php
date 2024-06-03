@@ -44,56 +44,55 @@
 
 
     <div class="content">
-        <div class="container mt-5">
-            <h1 class="mb-4">Client Dashboard</h1>
+        <h1 class="mb-4">Client Dashboard</h1>
 
-            <!-- Counters -->
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card text-white bg-warning">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Pending Vouchers</h5>
-                            <p class="card-text" id="voucherCount"><?php echo $pendingVoucher ?></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-4">
-                    <div class="card text-white bg-success">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Received Vouchers</h5>
-                            <p class="card-text" id="voucherCount"><?php echo $receivedVoucher ?></p>
-                        </div>
+        <!-- Counters -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card text-white bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Pending Vouchers</h5>
+                        <p class="card-text" id="voucherCount"><?php echo $pendingVoucher ?></p>
                     </div>
                 </div>
             </div>
 
-            <!-- Tables -->
-            <div class="row">
-                <!-- Voucher Table -->
-                <div class="col-md-12 mb-4">
-                    <div class="card">
-                        <div class="card-header">
-                            Vouchers
-                        </div>
-                        <div class="card-body">
-                            <div style="overflow-x: auto;">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Tracking No</th>
-                                            <th>Voucher Code</th>
-                                            <th>Date Forwarded</th>
-                                            <th>Carried By</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $squeryVoucher = "SELECT * FROM details";
-                                        $result = mysqli_query($db_connection, $squeryVoucher);
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "
+            <div class="col-md-6 mb-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Received Vouchers</h5>
+                        <p class="card-text" id="voucherCount"><?php echo $receivedVoucher ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tables -->
+        <div class="row">
+            <!-- Voucher Table -->
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Vouchers
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tracking No</th>
+                                        <th>Voucher Code</th>
+                                        <th>Date Forwarded</th>
+                                        <th>Carried By</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $squeryVoucher = "SELECT * FROM details";
+                                    $result = mysqli_query($db_connection, $squeryVoucher);
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "
                                             <tr>
                                                 <td>" . $row['tracking_no'] . "</td>
                                                 <td>" . $row['voucher_code'] . "</td>
@@ -102,26 +101,25 @@
                                                 <td>" . $row['status'] . "</td>
                                             </tr>
                                         ";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Additional Client Details -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            Additional Details
-                        </div>
-                        <div class="card-body">
-                            <p>Here you can add more information</p>
-                        </div>
+        <!-- Additional Client Details -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Additional Details
+                    </div>
+                    <div class="card-body">
+                        <p>Here you can add more information</p>
                     </div>
                 </div>
             </div>

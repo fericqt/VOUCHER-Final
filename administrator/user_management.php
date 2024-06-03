@@ -29,82 +29,81 @@
 
     <!-- Page Content -->
     <div class="content">
-        <div class="container">
-            <h1>User Management</h1>
-            <!-- Add User Modal -->
-            <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="../db_function/add_user.php">
-                                <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="userType">User Type</label>
-                                    <select id="userType" name="usertype">
-                                        <option value="Admin">Admin</option>
-                                        <option value="Client">Client</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Add User</button>
-                            </form>
-                        </div>
+
+        <h1>User Management</h1>
+        <!-- Add User Modal -->
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="../db_function/add_user.php">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userType">User Type</label>
+                                <select id="userType" name="usertype">
+                                    <option value="Admin">Admin</option>
+                                    <option value="Client">Client</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add User</button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <!-- Add User Button -->
-                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addUserModal">Add User</button>
-            </div>
-            <div class="table-responsive">
-                <table id="userTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>Name</th>
-                            <th>Password</th>
-                            <th>User Type</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        // Include database connection or configuration file
-                        include_once "../db_function/connection.php";
+        </div>
+        <div class="mb-3">
+            <!-- Add User Button -->
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addUserModal">Add User</button>
+        </div>
+        <div class="table-responsive">
+            <table id="userTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Password</th>
+                        <th>User Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Include database connection or configuration file
+                    include_once "../db_function/connection.php";
 
-                        // Fetch users from the database
-                        $query = "SELECT * FROM users";
-                        $result = mysqli_query($db_connection, $query);
+                    // Fetch users from the database
+                    $query = "SELECT * FROM users";
+                    $result = mysqli_query($db_connection, $query);
 
-                        // Display users in table rows
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['id'] . "</td>";
-                            echo "<td>" . $row['username'] . "</td>";
-                            echo "<td>" . $row['password'] . "</td>";
-                            echo "<td>" . $row['user_type'] . "</td>";
-                            echo "<td>";
-                            echo '<a href="#" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editUserModal" data-id="' . $row['id'] . '">Edit</a>';
-                            echo '<a href="../db_function/delete_user.php?id=' . $row['id'] . '" class="btn btn-danger ml-1" onclick="return confirm(\'Are you sure you want to delete this user?\')">Delete</a>';
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                    // Display users in table rows
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $row['id'] . "</td>";
+                        echo "<td>" . $row['username'] . "</td>";
+                        echo "<td>" . $row['password'] . "</td>";
+                        echo "<td>" . $row['user_type'] . "</td>";
+                        echo "<td>";
+                        echo '<a href="#" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editUserModal" data-id="' . $row['id'] . '">Edit</a>';
+                        echo '<a href="../db_function/delete_user.php?id=' . $row['id'] . '" class="btn btn-danger ml-1" onclick="return confirm(\'Are you sure you want to delete this user?\')">Delete</a>';
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 

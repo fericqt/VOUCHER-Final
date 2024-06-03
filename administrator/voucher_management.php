@@ -32,73 +32,73 @@
 
     <!-- Page Content -->
     <div class="content">
-        <div class="container">
-            <h1>Voucher Management</h1>
 
-            <!-- Add New Voucher Button -->
-            <div class="mb-3">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVoucherModal">Add New Voucher</button>
-            </div>
+        <h1>Voucher Management</h1>
 
-            <!-- Voucher Table -->
-            <div class="table-responsive">
-                <table id="voucherTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Tracking Number</th>
-                            <th>Voucher Code</th>
-                            <th>Date Forwarded</th>
-                            <th>Carried By</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Table body content -->
-                        <?php
-                        // Include database connection or configuration file
-                        include_once "../db_function/connection.php";
+        <!-- Add New Voucher Button -->
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVoucherModal">Add New Voucher</button>
+        </div>
 
-                        // Fetch the maximum ID value from the database
-                        $query_max_id = "SELECT MAX(id) as max_id FROM details";
-                        $result_max_id = mysqli_query($db_connection, $query_max_id);
-                        $row_max_id = mysqli_fetch_assoc($result_max_id);
-                        $max_id = $row_max_id['max_id'];
+        <!-- Voucher Table -->
+        <div class="table-responsive">
+            <table id="voucherTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Tracking Number</th>
+                        <th>Voucher Code</th>
+                        <th>Date Forwarded</th>
+                        <th>Carried By</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table body content -->
+                    <?php
+                    // Include database connection or configuration file
+                    include_once "../db_function/connection.php";
 
-                        // Set the starting ID value
-                        $starting_id = $max_id + 1;
+                    // Fetch the maximum ID value from the database
+                    $query_max_id = "SELECT MAX(id) as max_id FROM details";
+                    $result_max_id = mysqli_query($db_connection, $query_max_id);
+                    $row_max_id = mysqli_fetch_assoc($result_max_id);
+                    $max_id = $row_max_id['max_id'];
 
-                        // Fetch vouchers from the database
-                        $query = "SELECT * FROM details";
-                        $result = mysqli_query($db_connection, $query);
+                    // Set the starting ID value
+                    $starting_id = $max_id + 1;
 
-                        // Display vouchers in table rows
-                        $auto_incremented_id = 1; // Initialize auto-incremented ID starting from 1
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $auto_incremented_id . "</td>"; // Display auto-incremented ID
-                            echo "<td>" . $row['tracking_no'] . "</td>";
-                            echo "<td>" . $row['voucher_code'] . "</td>";
-                            echo "<td>" . $row['date_forwarded'] . "</td>";
-                            echo "<td>" . $row['carried_by'] . "</td>";
-                            echo "<td>" . $row['status'] . "</td>";
-                            echo "<td>";
-                            echo '<button type="button" class="btn btn-info info-btn" data-toggle="modal" data-target="#viewVoucherModal" data-id="' . $row['id'] . '">View</button>';
-                            echo '<button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editVoucherModal" data-id="' . $row['id'] . '">Edit</button>';
-                            echo '<button type="button" class="btn btn-danger delete-btn" data-id="' . $row['id'] . '">Delete</button>';
-                            echo "</td>";
-                            echo "</tr>";
-                            $auto_incremented_id++; // Increment auto-incremented ID for the next row
-                        }
-                        ?>
+                    // Fetch vouchers from the database
+                    $query = "SELECT * FROM details";
+                    $result = mysqli_query($db_connection, $query);
 
-
+                    // Display vouchers in table rows
+                    $auto_incremented_id = 1; // Initialize auto-incremented ID starting from 1
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $auto_incremented_id . "</td>"; // Display auto-incremented ID
+                        echo "<td>" . $row['tracking_no'] . "</td>";
+                        echo "<td>" . $row['voucher_code'] . "</td>";
+                        echo "<td>" . $row['date_forwarded'] . "</td>";
+                        echo "<td>" . $row['carried_by'] . "</td>";
+                        echo "<td>" . $row['status'] . "</td>";
+                        echo "<td>";
+                        echo '<button type="button" class="btn btn-info info-btn" data-toggle="modal" data-target="#viewVoucherModal" data-id="' . $row['id'] . '">View</button>';
+                        echo '<button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editVoucherModal" data-id="' . $row['id'] . '">Edit</button>';
+                        echo '<button type="button" class="btn btn-danger delete-btn" data-id="' . $row['id'] . '">Delete</button>';
+                        echo "</td>";
+                        echo "</tr>";
+                        $auto_incremented_id++; // Increment auto-incremented ID for the next row
+                    }
+                    ?>
 
 
-                    </tbody>
-                </table>
-            </div>
+
+
+                </tbody>
+            </table>
+
         </div>
 
         <!-- View Voucher Modal -->
@@ -162,7 +162,7 @@
                         <form action="../db_function/process_voucher.php" method="post">
                             <div class="form-group">
                                 <label for="tracking_no">Tracking Number:</label>
-                                <input type="text" class="form-control" id="tracking_no" name="tracking_no" required>
+                                <input readonly type="text" class="form-control" id="tracking_no" name="tracking_no" required>
                             </div>
                             <div class="form-group">
                                 <label for="voucher_code">Voucher Code:</label>
@@ -270,7 +270,18 @@
                         'print'
                     ]
                 });
-
+                //
+                $.ajax({
+                    url: '../db_function/get_tracking_no.php',
+                    type: 'GET',
+                    success: function(response) {
+                        var res = JSON.parse(response);
+                        $('#tracking_no').val(res);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
                 // View button click event
                 $('#voucherTable').on('click', '.info-btn', function() {
                     var voucherId = $(this).data('id');

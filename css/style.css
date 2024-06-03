@@ -114,6 +114,7 @@ footer img.user-icon {
 @media print {
   body * {
     visibility: hidden;
+    display: inline;
   }
   #viewVoucherForm,
   #viewVoucherForm * {
@@ -125,10 +126,11 @@ footer img.user-icon {
     top: 0;
     border: 1px solid black; /* Add border to the form */
     padding: 20px; /* Optional: Add padding for better appearance */
-    margin: 20px; /* Optional: Add margin if needed */
+    margin: 0; /* Ensure no margin */
     background: white; /* Ensure background is white */
-    width: calc(100% - 40px); /* Adjust width to fit within the page */
+    width: 100%; /* Adjust width to fit within the page */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    page-break-inside: avoid; /* Prevent page breaks inside the form */
   }
 }
 /* Responsive Design */
